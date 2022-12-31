@@ -1,4 +1,4 @@
-LAB - Class 06
+LAB - Class 6-9
 Project: Ten-Thousand
 Author: Cody De La Torre
 Resources
