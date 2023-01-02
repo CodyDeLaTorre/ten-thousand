@@ -12,7 +12,7 @@ class Game:
         self.banker = Banker()
 
     def quit_game(self):
-        print(f'Thanks for playing. You earned {self.banker.balance} points')
+       print(f'Thanks for playing. You earned {self.banker.balance} points')
 
     def start_round(self):
         print(f'starting round {str(self.game_round)} \n')
@@ -63,22 +63,25 @@ class Game:
             leftover = list(roll)
             new_list = choice2.split(',')
             actual_list = [eval(i) for i in new_list]
-            for i in actual_list:
-                leftover.remove(i)
-            self.dice = len(leftover)
-            cur_score = GameLogic.calculate_score(actual_list)
-            self.banker.temp_shelf(cur_score)
-            print(f'You have {self.banker.shelved} unbanked points and {len(leftover)} dice remaining')
-            choice3 = input(f'(r)oll again, (b)ank your points or (q)uit:')
-            if choice3 == 'q':
-                Game.quit_game(self)
-            elif choice3 == 'b':
-                self.dice = 6
-                Game.bank_points(self)
-            elif choice3 == 'r':
-                # print('feature not added yet')
-                Game.re_roll(self, leftover)
-                # Game.quit_game(self)
+            try:
+                for i in actual_list:
+                    leftover.remove(i)
+                self.dice = len(leftover)
+                cur_score = GameLogic.calculate_score(actual_list)
+                self.banker.temp_shelf(cur_score)
+                print(f'You have {self.banker.shelved} unbanked points and {len(leftover)} dice remaining')
+                choice3 = input(f'(r)oll again, (b)ank your points or (q)uit:')
+                if choice3 == 'q':
+                    Game.quit_game(self)
+                elif choice3 == 'b':
+                    self.dice = 6
+                    Game.bank_points(self)
+                elif choice3 == 'r':
+                    # print('feature not added yet')
+                    Game.re_roll(self, leftover)
+                    # Game.quit_game(self)
+            except:
+                print('Cheater!!! Or possibly made a typo...')
 
 
 start = Game()
